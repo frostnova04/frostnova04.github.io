@@ -47,5 +47,6 @@ next-env.d.ts
 *.docx
 *.doc
 
-# source avatar image (the published copy lives in public/bio.png)
+# source avatar images (the published copy lives in public/bio.jpg)
 ou8herm30j1prxas0m37vd5ebwzi953.png
+821cd855dd93e0dd0dcfd44fd0ec0e24.jpg
