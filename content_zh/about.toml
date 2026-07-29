@@ -15,6 +15,11 @@ source = "bio.md"
 title = "关于我"
 
 [[sections]]
+id = "game"
+type = "game"
+title = "Flappy Bird"
+
+[[sections]]
 id = "news"
 type = "list"
 title = "动态"

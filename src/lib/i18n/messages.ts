@@ -32,6 +32,15 @@ export interface LocaleMessages {
     selectedPublications: string;
     viewAll: string;
   };
+  game: {
+    title: string;
+    tapToStart: string;
+    gameOver: string;
+    tapToRestart: string;
+    score: string;
+    best: string;
+    hint: string;
+  };
   publications: {
     searchPlaceholder: string;
     filters: string;
@@ -82,6 +91,15 @@ const en: LocaleMessages = {
     selectedPublications: 'Selected Publications',
     viewAll: 'View All',
   },
+  game: {
+    title: 'Flappy Bird',
+    tapToStart: 'Click or press Space to fly',
+    gameOver: 'Game Over',
+    tapToRestart: 'Click to play again',
+    score: 'Score',
+    best: 'Best',
+    hint: 'Tap to flap and dodge the pipes!',
+  },
   publications: {
     searchPlaceholder: 'Search publications...',
     filters: 'Filters',
@@ -131,6 +149,15 @@ const zh: LocaleMessages = {
     news: '动态',
     selectedPublications: '精选论文',
     viewAll: '查看全部',
+  },
+  game: {
+    title: 'Flappy Bird',
+    tapToStart: '点击或按空格起飞',
+    gameOver: '游戏结束',
+    tapToRestart: '点击重新开始',
+    score: '得分',
+    best: '最佳',
+    hint: '点击拍动翅膀，躲避管道！',
   },
   publications: {
     searchPlaceholder: '搜索论文...',
