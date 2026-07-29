@@ -1,6 +1,7 @@
 type = "card"
 title = "工作经历"
 description = "我的实习与工作经历。"
+justify = true
 
 [[items]]
 title = "律师助理（实习）"

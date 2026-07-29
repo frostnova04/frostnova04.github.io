@@ -1,6 +1,7 @@
 type = "card"
 title = "Experience"
 description = "My internships and professional experience."
+justify = true
 
 [[items]]
 title = "Legal Intern"

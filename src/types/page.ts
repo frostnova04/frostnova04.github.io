@@ -27,4 +27,5 @@ export interface CardItem {
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
     items: CardItem[];
+    justify?: boolean;
 }
