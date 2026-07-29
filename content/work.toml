@@ -1,0 +1,33 @@
+type = "card"
+title = "Experience"
+description = "My internships and professional experience."
+
+[[items]]
+title = "Legal Intern"
+subtitle = "Quinn Emanuel Urquhart & Sullivan, LLP — Shanghai"
+date = "June 2026 – Sept. 2026"
+content = "International arbitration and commercial litigation practice. *(Details to be updated.)*"
+
+[[items]]
+title = "Legal Intern"
+subtitle = "East Buy (Oriental Selection, New Oriental Group) — Beijing"
+date = "Nov. 2025 – Jan. 2026"
+content = """Liaised with the AMR to evaluate legal risks in online sentiment, safeguarding brand equity and supporting crisis management.
+
+Drafted civil complaints for commercial and infringement disputes, coordinated with e-commerce vendors to resolve contractual conflicts, and managed evidentiary materials and legal archives."""
+
+[[items]]
+title = "Intern, Dispute Resolution"
+subtitle = "DeHeng Law Offices — Beijing"
+date = "July 2024 – Oct. 2024"
+content = """Conducted legal research supporting the resolution of civil and commercial disputes, including real estate and labor disputes.
+
+Drafted and translated legal documents in English and Chinese, including pleadings, legal opinions, rebuttal statements, arbitration petitions, and evidence checklists."""
+
+[[items]]
+title = "Lead Coordinator"
+subtitle = "5th UN Global Law Enforcement Network Against Corruption Meeting — Beijing"
+date = "Oct. 2024 – Nov. 2024"
+content = """Managed full liaison, guidance, and coordination for 7 high-level delegations, including the International Anti-Corruption Academy and the Tonga Anti-Corruption Commissioner's Office.
+
+Coordinated with directors of the Central Commission for Discipline Inspection's International Cooperation Department, compiling and reporting work from all team leaders and 80 volunteers."""

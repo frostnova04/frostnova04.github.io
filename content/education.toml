@@ -1,0 +1,27 @@
+type = "card"
+title = "Education"
+description = "My academic background."
+
+[[items]]
+title = "Tsinghua University"
+subtitle = "Juris Master — International Arbitration and Dispute Settlement"
+date = "Sept. 2025 – Present"
+content = "Beijing, China · GPA: 4.0/4.0 · Rank: 1/48"
+
+[[items]]
+title = "Tsinghua University"
+subtitle = "B.A. in English Literature, Minor in Law"
+date = "Sept. 2022 – Exp. June 2026"
+content = """Beijing, China
+
+**Honors & Scholarships**
+- Outstanding Graduate of Tsinghua University (Top 10%), 2026
+- Yang Jiang–Qian Zhongshu Scholarship (Comprehensive Merits), 2025
+- Scholarship for Academic Excellence — first place in major courses, 2024
+- Qinghe Scholarship (Comprehensive Merits), 2023"""
+
+[[items]]
+title = "National University of Singapore"
+subtitle = "University-funded Exchange Program"
+date = "Jan. 2025 – May 2025"
+content = "Singapore"

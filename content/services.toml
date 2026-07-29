@@ -1,9 +1,29 @@
 type = "card"
-title = "Services"
-description = "Professional services and community involvement."
+title = "Activities"
+description = "Campus involvement, leadership, skills, and interests."
 
 [[items]]
-title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+title = "Class President; Administrative Director"
+subtitle = "Communist Youth League Committee, Tsinghua University"
+date = ""
+content = "Served as class president and administrative director of the CYL committee."
+
+[[items]]
+title = "Vice President"
+subtitle = "Tsinghua University Go (Weiqi) Association"
+date = ""
+content = "Amateur 5 Dan; school team member."
+
+[[items]]
+title = "Badminton"
+subtitle = "Department Team & University Association"
+date = ""
+content = "Department team member and university badminton association member."
+
+[[items]]
+title = "Skills & Languages"
+subtitle = ""
+date = ""
+content = """**Exams:** IELTS 8.0 · GRE 335 (Verbal 165/170) · CFA Level I Passed (10A) · TEM-4 & TEM-8
+
+**Interests:** Weiqi, badminton, swimming, fitness, reading, and classical poetry."""

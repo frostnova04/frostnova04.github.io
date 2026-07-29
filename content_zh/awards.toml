@@ -1,27 +1,45 @@
 type = "card"
 title = "奖项"
-description = "我获得的荣誉与奖项。"
+description = "我获得的荣誉、奖学金与竞赛奖项。"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
+title = "二等奖及最佳辩手"
+subtitle = "第十八届法兰克福投资仲裁模拟法庭（FIAMC）"
+date = "2026年4月"
+content = "全国赛。就程序与实体问题进行法律检索并发表口头答辩。"
+
+[[items]]
+title = "全国一等奖及第一名"
+subtitle = "第十一届 FASIC 杯全国翻译大赛"
+date = "2024年1月"
+content = "全国排名第一。"
+
+[[items]]
+title = "清华大学优秀毕业生"
+subtitle = "清华大学（前10%）"
+date = "2026"
+content = ""
+
+[[items]]
+title = "杨绛钱锺书奖学金"
+subtitle = "综合优秀奖学金，清华大学"
 date = "2025"
-content = "奖项说明。"
+content = ""
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
+title = "学业优秀奖学金"
+subtitle = "专业课程第一名，清华大学"
 date = "2024"
-content = "奖项说明。"
+content = ""
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
+title = "清华奖学金"
+subtitle = "综合优秀奖学金，清华大学"
 date = "2023"
-content = "奖项说明。"
+content = ""
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2022"
-content = "奖项说明。"
+title = "清华社会实践金奖及先进个人"
+subtitle = "清华大学"
+date = ""
+content = "另获优秀志愿者奖。"

@@ -1,9 +1,29 @@
 type = "card"
-title = "学术服务"
-description = "专业服务与社区参与。"
+title = "课外活动"
+description = "校园参与、学生工作、技能与兴趣。"
 
 [[items]]
-title = "审稿人"
-subtitle = "某期刊"
-date = "2024"
-content = "参与审阅论文。"
+title = "班长；行政总监"
+subtitle = "清华大学共青团委员会"
+date = ""
+content = "担任班长及团委行政总监。"
+
+[[items]]
+title = "副会长"
+subtitle = "清华大学围棋协会"
+date = ""
+content = "围棋业余 5 段；校队成员。"
+
+[[items]]
+title = "羽毛球"
+subtitle = "系队及校级社团"
+date = ""
+content = "系队成员，校级羽毛球社团成员。"
+
+[[items]]
+title = "技能与语言"
+subtitle = ""
+date = ""
+content = """**考试：** 雅思 8.0 · GRE 335（Verbal 165/170）· CFA 一级通过（10A）· 英语专四 & 专八
+
+**兴趣：** 围棋、羽毛球、游泳、健身、阅读、古典诗词。"""

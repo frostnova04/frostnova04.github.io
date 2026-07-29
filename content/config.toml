@@ -1,29 +1,26 @@
 [site]
-title = "Jiale Liu"
-description = "PhD student at the University of Example."
+title = "Tianyi Dong"
+description = "Juris Master candidate at Tsinghua University, focusing on international arbitration and dispute resolution."
 favicon = "/favicon.svg"
-last_updated = "November 18, 2025"
+last_updated = "July 29, 2026"
 
 [author]
-name = "Jiale Liu"
-title = "PhD Student"
-institution = "University of Example"
+name = "Tianyi Dong"
+title = "Juris Master Candidate"
+institution = "Tsinghua University"
 avatar = "/bio.jpg"
 
 [social]
 # Contact information (leave blank or delete to hide)
 
-email = "john.doe@example.com"
-location = "City, Country"
-location_url = "https://maps.google.com"
+email = "dong-ty22@mails.tsinghua.edu.cn"
+location = "Beijing, China"
+location_url = "https://maps.google.com/?q=Tsinghua+University+Beijing"
 location_details = [
-  "Room 123, Science Building,",
-  "University Avenue, City, Country"
+  "Tsinghua University,",
+  "Beijing, China"
 ]
-google_scholar = "https://scholar.google.com"
-orcid = "https://orcid.org"
-github = "https://github.com"
-linkedin = "https://linkedin.com"
+github = "https://github.com/frostnova04"
 
 [features]
 # Show a like button on the about page
@@ -55,16 +52,16 @@ target = "about"
 href = "/"
 
 [[navigation]]
-title = "Publications"
+title = "Education"
 type = "page"
-target = "publications"
-href = "/publications"
+target = "education"
+href = "/education"
 
 [[navigation]]
-title = "Teaching"
+title = "Experience"
 type = "page"
-target = "teaching"
-href = "/teaching"
+target = "work"
+href = "/work"
 
 [[navigation]]
 title = "Awards"
@@ -73,7 +70,7 @@ target = "awards"
 href = "/awards"
 
 [[navigation]]
-title = "Services"
+title = "Activities"
 type = "page"
 target = "services"
 href = "/services"
