@@ -7,11 +7,11 @@
 ## Education
 
 **Tsinghua University** — Beijing, China
-*Juris Master — International Arbitration and Dispute Settlement* · Sept. 2025 – Present
+*Juris Master — International Arbitration and Dispute Settlement* · Sept. 2026 – Present
 - GPA: 4.0/4.0 · Rank: 1/48
 
 **Tsinghua University** — Beijing, China
-*B.A. in English Literature, Minor in Law* · Sept. 2022 – Exp. June 2026
+*B.A. in English Literature & LL.B. in Law* · Sept. 2022 – June 2026
 - Honors: Outstanding Graduate of Tsinghua University (Top 10%, 2026); Yang Jiang–Qian Zhongshu Scholarship (2025); Scholarship for Academic Excellence — first place in major courses (2024); Qinghe Scholarship (2023)
 
 **National University of Singapore** — Singapore

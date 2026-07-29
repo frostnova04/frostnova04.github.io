@@ -70,12 +70,6 @@ target = "awards"
 href = "/awards"
 
 [[navigation]]
-title = "Activities"
-type = "page"
-target = "services"
-href = "/services"
-
-[[navigation]]
 title = "CV"
 type = "page"
 target = "cv"

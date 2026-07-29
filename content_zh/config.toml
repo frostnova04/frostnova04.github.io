@@ -1,11 +1,11 @@
 [site]
 title = "董天一"
-description = "清华大学法学硕士，研究方向为国际仲裁与争议解决。"
+description = "清华大学法律硕士，研究方向为国际仲裁与争议解决。"
 last_updated = "2026年7月29日"
 
 [author]
 name = "董天一"
-title = "法学硕士在读"
+title = "法律硕士在读"
 institution = "清华大学"
 
 [social]
@@ -41,12 +41,6 @@ title = "奖项"
 type = "page"
 target = "awards"
 href = "/awards"
-
-[[navigation]]
-title = "课外活动"
-type = "page"
-target = "services"
-href = "/services"
 
 [[navigation]]
 title = "简历"
