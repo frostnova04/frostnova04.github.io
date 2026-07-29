@@ -6,13 +6,13 @@ description = "My academic background."
 title = "Tsinghua University"
 subtitle = "Juris Master — International Arbitration and Dispute Settlement"
 date = "Sept. 2026 – Present"
-content = "Beijing, China · GPA: 4.0/4.0 · Rank: 1/48"
+content = "Beijing, China"
 
 [[items]]
 title = "Tsinghua University"
 subtitle = "B.A. in English Literature & LL.B. in Law"
 date = "Sept. 2022 – June 2026"
-content = """Beijing, China
+content = """Beijing, China · GPA: 4.0/4.0 · Rank: 1/48
 
 **Honors & Scholarships**
 - Outstanding Graduate of Tsinghua University (Top 10%), 2026
