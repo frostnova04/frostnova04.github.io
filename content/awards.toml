@@ -6,7 +6,7 @@ description = "Honors, scholarships, and competition awards I have received."
 title = "Second Prize & Best Advocate"
 subtitle = "18th Frankfurt Investment Arbitration Moot Court (FIAMC)"
 date = "Apr. 2026"
-content = "National General Rounds. Conducted legal research on procedural and merits issues and delivered oral pleadings."
+content = "National General Rounds. Conducted legal research on procedural and merits issues and presented oral arguments."
 
 [[items]]
 title = "National First Prize & First Place"
@@ -15,7 +15,7 @@ date = "Jan. 2024"
 content = "Ranked first nationally."
 
 [[items]]
-title = "Outstanding Graduate of Tsinghua University"
+title = "Meritorious Graduate of Tsinghua University"
 subtitle = "Tsinghua University (Top 10%)"
 date = "2026"
 content = ""
@@ -28,12 +28,12 @@ content = ""
 
 [[items]]
 title = "Scholarship for Academic Excellence"
-subtitle = "First place in major courses, Tsinghua University"
+subtitle = "Ranked first in major courses, Tsinghua University"
 date = "2024"
 content = ""
 
 [[items]]
-title = "Qinghe Scholarship"
+title = "Tsinghua Friends · Qinghe Scholarship"
 subtitle = "Scholarship for Comprehensive Merits, Tsinghua University"
 date = "2023"
 content = ""
@@ -42,4 +42,4 @@ content = ""
 title = "THU Social Practice Gold Award & Outstanding Individual"
 subtitle = "Tsinghua University"
 date = ""
-content = "Also received the Award for Outstanding Volunteers."
+content = "Also recognized as a Zijing Star Volunteer and a Haidian District Star Volunteer."

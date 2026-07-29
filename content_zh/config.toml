@@ -17,6 +17,7 @@ location_details = [
   "中国，北京"
 ]
 github = "https://github.com/frostnova04"
+wechat = "dty123456789012345"
 
 [[navigation]]
 title = "关于我"

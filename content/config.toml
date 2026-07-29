@@ -21,6 +21,7 @@ location_details = [
   "Beijing, China"
 ]
 github = "https://github.com/frostnova04"
+wechat = "dty123456789012345"
 
 [features]
 # Show a like button on the about page

@@ -27,6 +27,19 @@ const OrcidIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
+// Custom WeChat icon component
+const WechatIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path d="M9.5 4C5.36 4 2 6.69 2 10c0 1.98 1.18 3.72 3 4.83V18l3.07-1.69c.45.11.93.19 1.43.23-.18-.57-.28-1.16-.28-1.77 0-3.09 2.69-5.35 6.28-5.8C15.96 6.32 13.51 4 9.5 4M7 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2m5 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2m4.25 2C13.5 11 11 13 11 15.5S13.5 20 16.25 20c.66 0 1.28-.1 1.86-.28L21 21l-.93-1.6c1.19-.78 1.93-1.85 1.93-3.05 0-2.49-2.5-4.35-5.75-4.35M14 15a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5m3.5 0a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+    </svg>
+);
+
 interface ProfileProps {
     author: SiteConfig['author'];
     social: SiteConfig['social'];
@@ -43,7 +56,10 @@ export default function Profile({ author, social, features, researchInterests }:
     const [isAddressPinned, setIsAddressPinned] = useState(false);
     const [showEmail, setShowEmail] = useState(false);
     const [isEmailPinned, setIsEmailPinned] = useState(false);
-    const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
+    const [showWechat, setShowWechat] = useState(false);
+    const [isWechatPinned, setIsWechatPinned] = useState(false);
+    const [wechatCopied, setWechatCopied] = useState(false);
+    const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | 'wechat' | null>(null);
 
     // Check local storage for user's like status
     useEffect(() => {
@@ -96,6 +112,12 @@ export default function Profile({ author, social, features, researchInterests }:
             name: 'GitHub',
             href: social.github,
             icon: Github,
+        }] : []),
+        ...(social.wechat ? [{
+            name: messages.profile.wechat,
+            href: '#',
+            icon: WechatIcon,
+            isWechat: true,
         }] : []),
         ...(social.linkedin ? [{
             name: 'LinkedIn',
@@ -279,6 +301,75 @@ export default function Profile({ author, social, features, researchInterests }:
                                                         <span className="sm:hidden">{messages.profile.send}</span>
                                                         <span className="hidden sm:inline">{messages.profile.sendEmail}</span>
                                                     </a>
+                                                </div>
+                                            </div>
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-neutral-800"></div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        );
+                    }
+                    if (link.isWechat) {
+                        return (
+                            <div key={link.name} className="relative">
+                                <button
+                                    onMouseEnter={() => {
+                                        if (!isWechatPinned) setShowWechat(true);
+                                        setLastClickedTooltip('wechat');
+                                    }}
+                                    onMouseLeave={() => !isWechatPinned && setShowWechat(false)}
+                                    onClick={() => {
+                                        setIsWechatPinned(!isWechatPinned);
+                                        setShowWechat(!isWechatPinned);
+                                        setLastClickedTooltip('wechat');
+                                    }}
+                                    className={`p-2 sm:p-2 transition-colors duration-200 ${isWechatPinned
+                                        ? 'text-accent'
+                                        : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
+                                        }`}
+                                    aria-label={link.name}
+                                >
+                                    <WechatIcon className="h-5 w-5" />
+                                </button>
+
+                                <AnimatePresence>
+                                    {(showWechat || isWechatPinned) && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                                            animate={{ opacity: 1, y: -10, scale: 1 }}
+                                            exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                                            className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-neutral-800 text-white px-4 py-3 rounded-lg text-sm font-medium shadow-lg max-w-[calc(100vw-2rem)] sm:max-w-none sm:whitespace-nowrap ${lastClickedTooltip === 'wechat' ? 'z-20' : 'z-10'
+                                                }`}
+                                            onMouseEnter={() => {
+                                                if (!isWechatPinned) setShowWechat(true);
+                                                setLastClickedTooltip('wechat');
+                                            }}
+                                            onMouseLeave={() => !isWechatPinned && setShowWechat(false)}
+                                        >
+                                            <div className="text-center">
+                                                <div className="flex items-center justify-center space-x-2 mb-1">
+                                                    <p className="font-semibold">{messages.profile.wechat}</p>
+                                                    {!isWechatPinned && (
+                                                        <div className="flex items-center space-x-0.5 text-xs text-neutral-400 opacity-60">
+                                                            <Pin className="h-2.5 w-2.5" />
+                                                            <span className="hidden sm:inline">{messages.profile.click}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <p className="break-words">{messages.profile.wechat}: {social.wechat}</p>
+                                                <div className="mt-2">
+                                                    <button
+                                                        onClick={() => {
+                                                            navigator.clipboard?.writeText(social.wechat || '');
+                                                            setWechatCopied(true);
+                                                            setTimeout(() => setWechatCopied(false), 1500);
+                                                        }}
+                                                        className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-dark text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 w-full sm:w-auto"
+                                                    >
+                                                        {wechatCopied ? <span>✓</span> : <WechatIcon className="h-4 w-4" />}
+                                                        <span>{messages.profile.copy}</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-neutral-800"></div>

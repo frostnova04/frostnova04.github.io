@@ -6,7 +6,7 @@ description = "我获得的荣誉、奖学金与竞赛奖项。"
 title = "二等奖及最佳辩手"
 subtitle = "第十八届法兰克福投资仲裁模拟法庭（FIAMC）"
 date = "2026年4月"
-content = "全国赛。就程序与实体问题进行法律检索并发表口头答辩。"
+content = "全国赛。就程序与实体问题进行法律检索并进行庭辩。"
 
 [[items]]
 title = "全国一等奖及第一名"
@@ -15,25 +15,25 @@ date = "2024年1月"
 content = "全国排名第一。"
 
 [[items]]
-title = "清华大学优秀毕业生"
+title = "清华大学优良毕业生"
 subtitle = "清华大学（前10%）"
 date = "2026"
 content = ""
 
 [[items]]
-title = "杨绛钱锺书奖学金"
+title = "好读书奖学金"
 subtitle = "综合优秀奖学金，清华大学"
 date = "2025"
 content = ""
 
 [[items]]
 title = "学业优秀奖学金"
-subtitle = "专业课程第一名，清华大学"
+subtitle = "专业课程位列年级第一，清华大学"
 date = "2024"
 content = ""
 
 [[items]]
-title = "清华奖学金"
+title = "清华之友·清荷奖学金"
 subtitle = "综合优秀奖学金，清华大学"
 date = "2023"
 content = ""
@@ -42,4 +42,4 @@ content = ""
 title = "清华社会实践金奖及先进个人"
 subtitle = "清华大学"
 date = ""
-content = "另获优秀志愿者奖。"
+content = "另获紫荆星级志愿者、海淀区星级志愿者。"

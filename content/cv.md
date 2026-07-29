@@ -12,7 +12,7 @@
 **Tsinghua University** — Beijing, China
 *B.A. in English Literature & LL.B. in Law* · Sept. 2022 – June 2026
 - GPA: 4.0/4.0 · Rank: 1/48
-- Honors: Outstanding Graduate of Tsinghua University (Top 10%, 2026); Yang Jiang–Qian Zhongshu Scholarship (2025); Scholarship for Academic Excellence — first place in major courses (2024); Qinghe Scholarship (2023)
+- Honors: Meritorious Graduate of Tsinghua University (Top 10%, 2026); Yang Jiang–Qian Zhongshu Scholarship (2025); Scholarship for Academic Excellence — ranked first in major courses (2024); Tsinghua Friends · Qinghe Scholarship (2023)
 
 **National University of Singapore** — Singapore
 *University-funded Exchange Program* · Jan. 2025 – May 2025
@@ -32,7 +32,7 @@
 - Conducted legal research supporting the resolution of civil and commercial disputes, including real estate and labor disputes.
 - Drafted and translated legal documents in English and Chinese, including pleadings, legal opinions, rebuttal statements, arbitration petitions, and evidence checklists.
 
-**Lead Coordinator** · *5th UN Global Law Enforcement Network Against Corruption Meeting — Beijing* · Oct. 2024 – Nov. 2024
+**Volunteer Team Leader** · *5th UN Global Law Enforcement Network Against Corruption Meeting — Beijing* · Oct. 2024 – Nov. 2024
 - Managed full liaison, guidance, and coordination for 7 high-level delegations, including the International Anti-Corruption Academy and the Tonga Anti-Corruption Commissioner's Office.
 - Coordinated with directors of the Central Commission for Discipline Inspection's International Cooperation Department, compiling and reporting work from all team leaders and 80 volunteers.
 
@@ -53,4 +53,4 @@
 
 **Interests:** Weiqi (Amateur 5 Dan), Badminton, Swimming, Fitness, Reading, Classical Poetry.
 
-**Social Practice:** THU Social Practice Gold Award & Outstanding Individual; Award for Outstanding Volunteers.
+**Social Practice:** THU Social Practice Gold Award & Outstanding Individual; Zijing Star Volunteer and Haidian District Star Volunteer.
