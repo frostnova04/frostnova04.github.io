@@ -8,6 +8,7 @@ import {
   PublicationPageConfig,
   TextPageConfig,
   CardPageConfig,
+  MessagePageConfig,
 } from '@/types/page';
 
 import { Metadata } from 'next';
@@ -44,6 +45,13 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
     return {
       type: 'card',
       config: pageConfig as CardPageConfig,
+    };
+  }
+
+  if (pageConfig.type === 'message') {
+    return {
+      type: 'message',
+      config: pageConfig as MessagePageConfig,
     };
   }
 

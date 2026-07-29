@@ -75,3 +75,9 @@ title = "CV"
 type = "page"
 target = "cv"
 href = "/cv"
+
+[[navigation]]
+title = "Leave a Message"
+type = "page"
+target = "message"
+href = "/message"

@@ -1,0 +1,4 @@
+type = "message"
+title = "Leave a Message"
+description = "Have something to say? Drop me a message below."
+endpoint = "https://formspree.io/f/your-form-id"

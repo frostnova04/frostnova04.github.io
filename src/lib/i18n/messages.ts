@@ -43,6 +43,17 @@ export interface LocaleMessages {
     best: string;
     hint: string;
   };
+  message: {
+    name: string;
+    namePlaceholder: string;
+    content: string;
+    contentPlaceholder: string;
+    submit: string;
+    sending: string;
+    successTitle: string;
+    successBody: string;
+    error: string;
+  };
   publications: {
     searchPlaceholder: string;
     filters: string;
@@ -104,6 +115,17 @@ const en: LocaleMessages = {
     best: 'Best',
     hint: 'Tap to flap and dodge the pipes!',
   },
+  message: {
+    name: 'Name (optional)',
+    namePlaceholder: 'Your name',
+    content: 'Message',
+    contentPlaceholder: 'Write something...',
+    submit: 'Send',
+    sending: 'Sending...',
+    successTitle: 'Thank you!',
+    successBody: 'Your message has been sent. I will get back to you soon.',
+    error: 'Something went wrong. Please try again later.',
+  },
   publications: {
     searchPlaceholder: 'Search publications...',
     filters: 'Filters',
@@ -164,6 +186,17 @@ const zh: LocaleMessages = {
     score: '得分',
     best: '最佳',
     hint: '点击拍动翅膀，躲避管道！',
+  },
+  message: {
+    name: '称呼（可选）',
+    namePlaceholder: '你的名字',
+    content: '留言内容',
+    contentPlaceholder: '写点什么吧……',
+    submit: '发送',
+    sending: '发送中……',
+    successTitle: '感谢留言！',
+    successBody: '你的留言已送达，我会尽快查看。',
+    error: '提交失败，请稍后重试。',
   },
   publications: {
     searchPlaceholder: '搜索论文...',

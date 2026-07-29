@@ -1,0 +1,4 @@
+type = "message"
+title = "给我留言"
+description = "有什么想对我说的，在下面给我留言吧。"
+endpoint = "https://formspree.io/f/your-form-id"

@@ -3,18 +3,21 @@
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
+import MessagePage from '@/components/pages/MessagePage';
 import { Publication } from '@/types/publication';
 import {
   PublicationPageConfig,
   TextPageConfig,
   CardPageConfig,
+  MessagePageConfig,
 } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
 export type DynamicPageLocaleData =
   | { type: 'publication'; config: PublicationPageConfig; publications: Publication[] }
   | { type: 'text'; config: TextPageConfig; content: string }
-  | { type: 'card'; config: CardPageConfig };
+  | { type: 'card'; config: CardPageConfig }
+  | { type: 'message'; config: MessagePageConfig };
 
 interface DynamicPageClientProps {
   dataByLocale: Record<string, DynamicPageLocaleData>;
@@ -40,6 +43,9 @@ export default function DynamicPageClient({ dataByLocale, defaultLocale }: Dynam
       )}
       {pageData.type === 'card' && (
         <CardPage config={pageData.config} />
+      )}
+      {pageData.type === 'message' && (
+        <MessagePage config={pageData.config} />
       )}
     </div>
   );
