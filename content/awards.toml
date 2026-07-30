@@ -1,6 +1,5 @@
 type = "card"
 title = "Awards"
-eyebrow = "AWARDS"
 description = "Honors, scholarships, and competition awards I have received."
 
 [[items]]

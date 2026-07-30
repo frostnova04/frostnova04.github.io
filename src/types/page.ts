@@ -28,7 +28,6 @@ export interface CardPageConfig extends BasePageConfig {
     type: 'card';
     items: CardItem[];
     justify?: boolean;
-    eyebrow?: string;
 }
 
 export interface MessagePageConfig extends BasePageConfig {

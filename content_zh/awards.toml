@@ -1,6 +1,5 @@
 type = "card"
 title = "奖项"
-eyebrow = "AWARDS"
 description = "我获得的荣誉、奖学金与竞赛奖项。"
 
 [[items]]

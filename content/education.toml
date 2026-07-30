@@ -1,6 +1,5 @@
 type = "card"
 title = "Education"
-eyebrow = "EDUCATION"
 description = "My academic background."
 
 [[items]]
