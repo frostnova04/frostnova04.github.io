@@ -226,7 +226,7 @@ export default function FlappyBird({ title }: { title?: string }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.35 }}
     >
-      <h2 className="text-2xl font-serif font-bold text-primary mb-4">{resolvedTitle}</h2>
+      <h2 data-eyebrow="MINI GAME" className="section-title text-2xl font-serif font-bold text-primary mb-4 tracking-tight">{resolvedTitle}</h2>
       <div
         ref={wrapRef}
         tabIndex={0}

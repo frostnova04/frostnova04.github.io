@@ -1,5 +1,6 @@
 type = "card"
 title = "工作经历"
+eyebrow = "EXPERIENCE"
 description = "我的实习与工作经历。"
 justify = true
 

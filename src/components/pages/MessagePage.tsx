@@ -41,7 +41,7 @@ export default function MessagePage({ config }: { config: MessagePageConfig }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-2xl"
         >
-            <h1 className="text-4xl font-serif font-bold text-primary mb-4">{config.title}</h1>
+            <h1 data-eyebrow="GET IN TOUCH" className="section-title tracking-tight text-4xl font-serif font-bold text-primary mb-4">{config.title}</h1>
             {config.description && (
                 <p className="text-lg text-neutral-600 dark:text-neutral-500 mb-8">{config.description}</p>
             )}

@@ -1,5 +1,6 @@
 type = "card"
 title = "教育背景"
+eyebrow = "EDUCATION"
 description = "我的求学经历。"
 
 [[items]]
