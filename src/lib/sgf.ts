@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { parseSgf } from './sgf-shared';
+import { parseSgf, slugify } from './sgf-shared';
+import type { SgfGame, SgfListItem } from './sgf-shared';
 
 /**
  * Server-only SGF file listing (uses fs; runs at build time).
@@ -11,6 +12,10 @@ import { parseSgf } from './sgf-shared';
 export {
   parseSgf,
   gameTitle,
+  describeGame,
+  parseFilename,
+  resultLabel,
+  slugify,
 } from './sgf-shared';
 export type {
   SgfGame,
@@ -18,26 +23,27 @@ export type {
   SgfMove,
   SgfMeta,
   Stone,
+  GameDescriptor,
 } from './sgf-shared';
 
 const SGF_DIR = path.join(process.cwd(), 'sgf');
 
-export function listSgfGames(): import('./sgf-shared').SgfListItem[] {
-  let files: string[] = [];
+function listSgfFiles(): string[] {
   try {
-    files = fs.readdirSync(SGF_DIR).filter((f) => f.toLowerCase().endsWith('.sgf'));
+    return fs.readdirSync(SGF_DIR).filter((f) => f.toLowerCase().endsWith('.sgf')).sort();
   } catch {
-    return []; // folder missing or unreadable -> empty (build still succeeds)
+    return [];
   }
-  files.sort();
+}
 
-  const items: import('./sgf-shared').SgfListItem[] = [];
-  for (const f of files) {
+export function listSgfGames(): SgfListItem[] {
+  const items: SgfListItem[] = [];
+  for (const f of listSgfFiles()) {
     try {
       const raw = fs.readFileSync(path.join(SGF_DIR, f), 'utf8');
       const parsed = parseSgf(raw);
       items.push({
-        id: f.replace(/\.sgf$/i, ''),
+        id: slugify(f.replace(/\.sgf$/i, '')),
         filename: f,
         size: parsed.size,
         moveCount: parsed.moves.length,
@@ -50,13 +56,14 @@ export function listSgfGames(): import('./sgf-shared').SgfListItem[] {
   return items;
 }
 
-export function getSgfGame(id: string): import('./sgf-shared').SgfGame | null {
-  const safe = id.replace(/[\/\\]/g, '');
+export function getSgfGame(slug: string): SgfGame | null {
+  const safe = slug.replace(/[\/\\]/g, '');
+  const target = listSgfFiles().find((f) => slugify(f.replace(/\.sgf$/i, '')) === safe);
+  if (!target) return null;
   try {
-    const f = `${safe}.sgf`;
-    const raw = fs.readFileSync(path.join(SGF_DIR, f), 'utf8');
+    const raw = fs.readFileSync(path.join(SGF_DIR, target), 'utf8');
     const parsed = parseSgf(raw);
-    return { id: safe, filename: f, ...parsed };
+    return { id: safe, filename: target, ...parsed };
   } catch {
     return null;
   }

@@ -24,6 +24,7 @@ export interface SgfMeta {
   gameName?: string;
   komi?: string;
   handicap?: string;
+  place?: string;
 }
 
 export interface SgfGame {
@@ -160,6 +161,7 @@ export function parseSgf(raw: string): Omit<SgfGame, 'id' | 'filename'> {
         case 'RE': meta.result = values[0]; break;
         case 'DT': meta.date = values[0]; break;
         case 'EV': meta.event = values[0]; break;
+        case 'PC': meta.place = values[0]; break;
         case 'GN': meta.gameName = values[0]; break;
         case 'KM': meta.komi = values[0]; break;
         case 'HA': meta.handicap = values[0]; break;
@@ -180,3 +182,51 @@ export function gameTitle(meta: SgfMeta, fallback: string): string {
   if (meta.white) return meta.white;
   return fallback;
 }
+
+/* ---------- filename-derived display (user names files: [black]vs[white]YYYYMMDD) ---------- */
+
+/** URL-safe slug for a filename stem (strips brackets & unsafe punctuation, keeps CJK). */
+export function slugify(stem: string): string {
+  return stem
+    .replace(/\.sgf$/i, '')
+    .replace(/[\[\]\(\)\{\}\s/\\:?*"<>|,，。！？、]+/g, '');
+}
+
+export interface GameDescriptor {
+  title: string;
+  black: string;
+  white: string;
+  date: string;
+  result: string;
+  note: string;
+}
+
+/** Parse a filename like "[黑]vs[白]YYYYMMDD.sgf" into names + a formatted date. */
+export function parseFilename(filename: string): { black: string; white: string; date: string } | null {
+  const base = filename.replace(/\.sgf$/i, '');
+  const m = base.match(/^\[(.+?)\]\s*vs\s*\[(.+?)\]\s*(\d{4})(\d{2})(\d{2})$/);
+  if (!m) return null;
+  return { black: m[1].trim(), white: m[2].trim(), date: `${m[3]}-${m[4]}-${m[5]}` };
+}
+
+export function resultLabel(re: string | undefined): string {
+  if (!re) return '';
+  if (/^draw$/i.test(re) || re === '0' || re === 'Void') return '和棋';
+  return re; // e.g. W+3.25, B+R, W+T
+}
+
+/**
+ * Build display fields. Player names & date prefer the filename (the user's own
+ * labeling / the real game date); the SGF's platform handles & export-time DT
+ * are only fallbacks. The note comes from SGF PC (place) / EV (event).
+ */
+export function describeGame(filename: string, meta: SgfMeta): GameDescriptor {
+  const p = parseFilename(filename);
+  const black = p?.black || meta.black || '黑';
+  const white = p?.white || meta.white || '白';
+  const title = meta.gameName || `${black} vs ${white}`;
+  const date = p?.date || meta.date || '';
+  const note = meta.place || meta.event || '';
+  return { title, black, white, date, result: resultLabel(meta.result), note };
+}
+

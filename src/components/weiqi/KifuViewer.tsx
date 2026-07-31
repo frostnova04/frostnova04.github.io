@@ -9,7 +9,7 @@ import {
   ChevronDoubleRightIcon,
 } from '@heroicons/react/24/solid';
 import type { SgfGame } from '@/lib/sgf-shared';
-import { gameTitle } from '@/lib/sgf-shared';
+import { describeGame } from '@/lib/sgf-shared';
 
 /* ---------------- capture-aware state engine ---------------- */
 
@@ -204,7 +204,7 @@ export default function KifuViewer({ game }: { game: SgfGame }) {
     else if (e.key === 'End') { e.preventDefault(); setCur(total); }
   };
 
-  const title = gameTitle(game.meta, game.id);
+  const d = describeGame(game.filename, game.meta);
   const lastMove = cur > 0 ? game.moves[cur - 1] : null;
   const lastLabel = lastMove && !lastMove.pass
     ? `${lastMove.color === 1 ? '黑' : '白'} ${coordLabel(lastMove.x, lastMove.y, game.size)}`
@@ -212,6 +212,8 @@ export default function KifuViewer({ game }: { game: SgfGame }) {
 
   const btn =
     'inline-flex items-center justify-center h-9 w-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white dark:hover:bg-accent disabled:opacity-40 disabled:hover:bg-neutral-100 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-300 transition-colors';
+
+  const sub = [d.note, d.date, d.result, `${game.size}×${game.size}`].filter(Boolean).join(' · ');
 
   return (
     <motion.div
@@ -222,15 +224,8 @@ export default function KifuViewer({ game }: { game: SgfGame }) {
       onKeyDown={onKey}
       className="outline-none"
     >
-      <h1 className="text-3xl font-serif font-bold text-primary mb-1">{title}</h1>
-      <div className="text-sm text-neutral-500 mb-6">
-        {game.meta.black || '黑'}{game.meta.blackRank ? ` (${game.meta.blackRank})` : ''}
-        {' vs '}
-        {game.meta.white || '白'}{game.meta.whiteRank ? ` (${game.meta.whiteRank})` : ''}
-        {game.meta.result ? ` · ${game.meta.result}` : ''}
-        {game.meta.date ? ` · ${game.meta.date}` : ''}
-        {' · '}{game.size}×{game.size}
-      </div>
+      <h1 className="text-3xl font-serif font-bold text-primary mb-1">{d.title}</h1>
+      <div className="text-sm text-neutral-500 mb-6">{sub}</div>
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-3 sm:p-4">
         <GoBoard size={game.size} board={board} last={last} />

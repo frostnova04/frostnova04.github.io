@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { listSgfGames, gameTitle } from '@/lib/sgf';
+import { listSgfGames, describeGame } from '@/lib/sgf';
 
 export default function WeiqiIndex() {
   const games = listSgfGames();
@@ -24,7 +24,8 @@ export default function WeiqiIndex() {
       ) : (
         <div className="grid gap-4">
           {games.map((g) => {
-            const title = gameTitle(g.meta, g.id);
+            const d = describeGame(g.filename, g.meta);
+            const sub = [d.note, d.date, d.result].filter(Boolean).join(' · ');
             return (
               <Link
                 key={g.id}
@@ -33,13 +34,8 @@ export default function WeiqiIndex() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <h2 className="text-lg font-semibold text-primary truncate">{title}</h2>
-                    <p className="text-sm text-neutral-500 mt-1">
-                      {g.meta.black || '黑'}
-                      {g.meta.white ? ` vs ${g.meta.white}` : ''}
-                      {g.meta.result ? ` · ${g.meta.result}` : ''}
-                      {g.meta.date ? ` · ${g.meta.date}` : ''}
-                    </p>
+                    <h2 className="text-lg font-semibold text-primary truncate">{d.title}</h2>
+                    {sub && <p className="text-sm text-neutral-500 mt-1">{sub}</p>}
                   </div>
                   <div className="text-right text-xs text-neutral-500 flex-shrink-0">
                     <div>{g.size}×{g.size}</div>
