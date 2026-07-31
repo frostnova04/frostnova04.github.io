@@ -8,8 +8,8 @@ import {
   ChevronRightIcon,
   ChevronDoubleRightIcon,
 } from '@heroicons/react/24/solid';
-import type { SgfGame } from '@/lib/sgf';
-import { gameTitle } from '@/lib/sgf';
+import type { SgfGame } from '@/lib/sgf-shared';
+import { gameTitle } from '@/lib/sgf-shared';
 
 /* ---------------- capture-aware state engine ---------------- */
 
