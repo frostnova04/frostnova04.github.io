@@ -185,11 +185,26 @@ export function gameTitle(meta: SgfMeta, fallback: string): string {
 
 /* ---------- filename-derived display (user names files: [black]vs[white]YYYYMMDD) ---------- */
 
-/** URL-safe slug for a filename stem (strips brackets & unsafe punctuation, keeps CJK). */
+/** 4-char hex hash (FNV-1a) for stable, collision-resistant ASCII suffixes. */
+function hash4(s: string): string {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(16).padStart(8, '0').slice(0, 4);
+}
+
+/**
+ * ASCII-only URL slug for a kifu (avoids non-ASCII in the path, which some
+ * proxies / share targets mishandle). Shape: "YYYYMMDD-xxxx" (date + hash of
+ * the filename). Stable across rebuilds and unique even for same-date games.
+ */
 export function slugify(stem: string): string {
-  return stem
-    .replace(/\.sgf$/i, '')
-    .replace(/[\[\]\(\)\{\}\s/\\:?*"<>|,，。！？、]+/g, '');
+  const s = stem.replace(/\.sgf$/i, '');
+  const dm = s.match(/(\d{8})\s*$/);
+  const h = hash4(s);
+  return dm ? `${dm[1]}-${h}` : `kifu-${h}`;
 }
 
 export interface GameDescriptor {
