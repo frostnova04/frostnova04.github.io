@@ -81,3 +81,9 @@ title = "Leave a Message"
 type = "page"
 target = "message"
 href = "/message"
+
+[[navigation]]
+title = "Weiqi Kifu"
+type = "link"
+target = "weiqi"
+href = "/weiqi"

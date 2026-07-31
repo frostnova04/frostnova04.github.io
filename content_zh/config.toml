@@ -54,3 +54,9 @@ title = "给我留言"
 type = "page"
 target = "message"
 href = "/message"
+
+[[navigation]]
+title = "围棋棋谱"
+type = "link"
+target = "weiqi"
+href = "/weiqi"
