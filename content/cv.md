@@ -21,8 +21,10 @@
 
 ## Professional Experience
 
-**Legal Intern** · *Quinn Emanuel Urquhart & Sullivan, LLP — Shanghai* · June 2026 – Sept. 2026
-- International arbitration and commercial litigation practice. *(Details to be updated.)*
+**Summer Associate (Legal Intern)** · *Quinn Emanuel Urquhart & Sullivan, LLP — Shanghai* · June 2026 – Sept. 2026
+- Supported case teams on cross-border commercial disputes, including patent litigation for a leading Chinese biotechnology company and multi-jurisdiction antitrust proceedings.
+- Conducted legal research on U.S. regulatory regimes (including NDAA Section 1260H listings) and cross-jurisdiction corporate investigations, tracing multi-layered equity structures and performing Hong Kong company registry searches.
+- Performed document review for antitrust e-discovery in Relativity; tracked U.S. federal court dockets via PacerPro; translated and proofread bilingual witness statements, submissions, and evidence bundles.
 
 **Legal Intern** · *East Buy (Oriental Selection, New Oriental Group) — Beijing* · Nov. 2025 – Jan. 2026
 - Liaised with the AMR to evaluate legal risks in online sentiment, safeguarding brand equity and supporting crisis management.
