@@ -1,13 +1,21 @@
 import type { Metadata } from 'next';
+import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
 import BirdMascot from '@/components/ui/BirdMascot';
+import CommandPalette from '@/components/ui/CommandPalette';
 import { getConfig } from '@/lib/config';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 import type { SiteConfig } from '@/lib/config';
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = getConfig();
@@ -130,7 +138,7 @@ export default function RootLayout({
   } = buildLocalizedConfigMaps(targetLocales);
 
   return (
-    <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
+    <html lang={runtimeI18n.defaultLocale} className={`${jetbrainsMono.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
         <link rel="dns-prefetch" href="https://jialeliu.com" />
@@ -146,18 +154,18 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('theme-storage');
+                const theme = localStorage.getItem('theme-storage-v2');
                 const parsed = theme ? JSON.parse(theme) : null;
-                const setting = parsed?.state?.theme || 'light';
+                const setting = parsed?.state?.theme || 'dark';
                 const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const effective = setting === 'dark' ? 'dark' : (setting === 'light' ? 'light' : (prefersDark ? 'dark' : 'light'));
+                const effective = setting === 'light' ? 'light' : (setting === 'dark' ? 'dark' : (prefersDark ? 'dark' : 'light'));
                 var root = document.documentElement;
                 root.classList.add(effective);
                 root.setAttribute('data-theme', effective);
               } catch (e) {
                 var root = document.documentElement;
-                root.classList.add('light');
-                root.setAttribute('data-theme', 'light');
+                root.classList.add('dark');
+                root.setAttribute('data-theme', 'dark');
               }
             `,
           }}
@@ -188,6 +196,11 @@ export default function RootLayout({
               defaultLocale={runtimeI18n.defaultLocale}
             />
             <BirdMascot />
+            <CommandPalette
+              items={config.navigation}
+              itemsByLocale={navigationByLocale}
+              email={config.social.email}
+            />
           </LocaleProvider>
         </ThemeProvider>
       </body>

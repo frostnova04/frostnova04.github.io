@@ -14,6 +14,8 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Linkedin, Pin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
 import { useMessages } from '@/lib/i18n/useMessages';
+import Typewriter from '@/components/ui/Typewriter';
+import { useLocaleStore } from '@/lib/stores/localeStore';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -49,6 +51,11 @@ interface ProfileProps {
 
 export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
     const messages = useMessages();
+    const locale = useLocaleStore((s) => s.locale);
+
+    const typewriterRoles = locale === 'zh'
+        ? ['法律硕士 @ 清华大学', '国际仲裁与争议解决', '围棋业余 5 段', 'CFA Level I 通过']
+        : ['Juris Master @ Tsinghua', 'International Arbitration', 'Weiqi Amateur 5 Dan', 'CFA Level I Passed'];
 
     const [hasLiked, setHasLiked] = useState(false);
     const [showThanks, setShowThanks] = useState(false);
@@ -156,6 +163,9 @@ export default function Profile({ author, social, features, researchInterests }:
                 <p className="text-neutral-600 mb-2">
                     {author.institution}
                 </p>
+                <div className="font-mono text-sm text-accent mt-3">
+                    <Typewriter prefix="> " words={typewriterRoles} />
+                </div>
             </div>
 
             {/* Contact Links */}

@@ -12,6 +12,8 @@ export interface PublicationPageConfig extends BasePageConfig {
 export interface TextPageConfig extends BasePageConfig {
     type: 'text';
     source: string;
+    /** Optional JSON source rendered via the geeky `cv.json` toggle. */
+    json_source?: string;
 }
 
 export interface CardItem {
@@ -28,6 +30,8 @@ export interface CardPageConfig extends BasePageConfig {
     type: 'card';
     items: CardItem[];
     justify?: boolean;
+    /** Card layout variant. "git" renders items as a git-log style timeline. */
+    layout?: 'default' | 'git';
 }
 
 export interface MessagePageConfig extends BasePageConfig {

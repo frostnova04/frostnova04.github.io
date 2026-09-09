@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Disclosure } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import LanguageToggle from '@/components/ui/LanguageToggle';
+import { OPEN_PALETTE_EVENT } from '@/components/ui/CommandPalette';
 import type { SiteConfig } from '@/lib/config';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import { useMessages } from '@/lib/i18n/useMessages';
@@ -21,6 +22,24 @@ interface NavigationProps {
   i18n: I18nRuntimeConfig;
   itemsByLocale?: Record<string, SiteConfig['navigation']>;
   siteTitleByLocale?: Record<string, string>;
+}
+
+/** Small button that opens the Ctrl+K command palette. */
+function PaletteButton() {
+  return (
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
+      title="Ctrl K"
+      aria-label="Open command palette (Ctrl K)"
+      className="flex items-center gap-1.5 p-2 rounded-md text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
+    >
+      <MagnifyingGlassIcon className="h-5 w-5" />
+      <kbd className="hidden xl:inline-block font-mono text-[10px] px-1.5 py-0.5 rounded border border-neutral-300 dark:border-neutral-600 text-neutral-500">
+        Ctrl K
+      </kbd>
+    </button>
+  );
 }
 
 export default function Navigation({
@@ -242,12 +261,14 @@ export default function Navigation({
                         );
                       })}
                     </div>
+                    <PaletteButton />
                     <LanguageToggle i18n={i18n} />
                     <ThemeToggle />
                   </div>
                 </div>
 
                 <div className="lg:hidden flex items-center space-x-2">
+                  <PaletteButton />
                   <LanguageToggle i18n={i18n} />
                   <ThemeToggle />
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200">

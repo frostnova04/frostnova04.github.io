@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
+import GitTimeline from '@/components/pages/GitTimeline';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
@@ -30,6 +31,10 @@ const markdownComponents = {
 };
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
+    if (config.layout === 'git') {
+        return <GitTimeline config={config} embedded={embedded} />;
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

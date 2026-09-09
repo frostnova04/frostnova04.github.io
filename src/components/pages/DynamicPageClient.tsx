@@ -15,7 +15,7 @@ import { useLocaleStore } from '@/lib/stores/localeStore';
 
 export type DynamicPageLocaleData =
   | { type: 'publication'; config: PublicationPageConfig; publications: Publication[] }
-  | { type: 'text'; config: TextPageConfig; content: string }
+  | { type: 'text'; config: TextPageConfig; content: string; jsonContent?: string }
   | { type: 'card'; config: CardPageConfig }
   | { type: 'message'; config: MessagePageConfig };
 
@@ -39,7 +39,7 @@ export default function DynamicPageClient({ dataByLocale, defaultLocale }: Dynam
         <PublicationsList config={pageData.config} publications={pageData.publications} />
       )}
       {pageData.type === 'text' && (
-        <TextPage config={pageData.config} content={pageData.content} />
+        <TextPage config={pageData.config} content={pageData.content} jsonContent={pageData.jsonContent} />
       )}
       {pageData.type === 'card' && (
         <CardPage config={pageData.config} />

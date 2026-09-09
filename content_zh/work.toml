@@ -2,6 +2,7 @@ type = "card"
 title = "工作经历"
 description = "我的实习与工作经历。"
 justify = true
+layout = "git"
 
 [[items]]
 title = "暑期实习生（Summer Associate）"

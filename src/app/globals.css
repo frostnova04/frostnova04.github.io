@@ -87,7 +87,7 @@
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Georgia CDN', Georgia, serif;
-  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-mono: var(--font-jetbrains-mono), 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   
   /* Font sizes */
   --font-size-xs: 0.75rem;
@@ -142,35 +142,35 @@ html[data-locale^="zh"] {
   --font-serif: "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", STSong, SimSun, serif;
 }
 
-/* Dark mode styles */
+/* Dark mode styles — terminal / developer palette (neon teal on near-black) */
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  
+  --background: #0a0f16;
+  --foreground: #d6e2f0;
+
   /* Adjust colors for dark mode */
-  --primary: #f8fafc;
-  --primary-light: #e2e8f0;
-  --primary-dark: #cbd5e1;
-  --accent: #e4b976;
-  --accent-light: #f0c674;
-  --accent-dark: #d4a562;
-  
+  --primary: #e8f1fb;
+  --primary-light: #cbdcee;
+  --primary-dark: #a9c2de;
+  --accent: #64ffda;
+  --accent-light: #8affe9;
+  --accent-dark: #3ecfae;
+
   /* Dark mode glass effect */
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(10, 15, 22, 0.85);
+  --glass-border: rgba(100, 255, 218, 0.14);
   --glass-shadow: rgba(0, 0, 0, 0.5);
-  
+
   /* Neutral colors for dark mode - properly inverted */
-  --neutral-50: #0f172a;
-  --neutral-100: #1e293b;
-  --neutral-200: #334155;
-  --neutral-300: #475569;
-  --neutral-400: #64748b;
-  --neutral-500: #94a3b8;
-  --neutral-600: #cbd5e1;
-  --neutral-700: #e2e8f0;
-  --neutral-800: #1e293b;
-  --neutral-900: #0f172a;
+  --neutral-50: #0a0f16;
+  --neutral-100: #101722;
+  --neutral-200: #1b2736;
+  --neutral-300: #2b3b4f;
+  --neutral-400: #4a5f78;
+  --neutral-500: #7c93ab;
+  --neutral-600: #aebfd2;
+  --neutral-700: #d0dde9;
+  --neutral-800: #101722;
+  --neutral-900: #0d1420;
 }
 
 
@@ -249,7 +249,30 @@ body {
 }
 
 .dark .card-bg {
-  background-color: #1e293b;
-  /* Soften card borders in dark mode only */
-  border-color: rgba(148, 163, 184, 0.24);
+  background-color: #0d1420;
+  border-color: rgba(100, 255, 218, 0.16);
+}
+
+/* Terminal-flavoured extras (dark geek theme) */
+
+/* Subtle dot-grid backdrop in dark mode */
+.dark body {
+  background-image: radial-gradient(circle, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Neon selection */
+.dark ::selection {
+  background: rgba(100, 255, 218, 0.25);
+  color: #eafff9;
+}
+
+/* Blinking block cursor for the typewriter / prompt effects */
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1.1s step-end infinite;
 }

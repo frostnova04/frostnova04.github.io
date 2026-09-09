@@ -34,10 +34,14 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
   if (pageConfig.type === 'text') {
     const textConfig = pageConfig as TextPageConfig;
     const content = getMarkdownContent(textConfig.source, locale);
+    const jsonContent = textConfig.json_source
+      ? getMarkdownContent(textConfig.json_source, locale) || undefined
+      : undefined;
     return {
       type: 'text',
       config: textConfig,
       content,
+      ...(jsonContent ? { jsonContent } : {}),
     };
   }
 

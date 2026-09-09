@@ -143,6 +143,16 @@ export default function BirdMascot() {
 
     useEffect(() => () => clearTimers(), []);
 
+    // external trigger (command palette easter-egg command)
+    useEffect(() => {
+        const onDetonate = () => {
+            if (stage === 'idle') detonate();
+        };
+        window.addEventListener('tianyi:bird-detonate', onDetonate);
+        return () => window.removeEventListener('tianyi:bird-detonate', onDetonate);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [stage]);
+
     const onClickBird = () => {
         if (stage !== 'idle') {
             restore();

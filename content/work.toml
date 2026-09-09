@@ -2,6 +2,7 @@ type = "card"
 title = "Experience"
 description = "My internships and professional experience."
 justify = true
+layout = "git"
 
 [[items]]
 title = "Summer Associate (Legal Intern)"

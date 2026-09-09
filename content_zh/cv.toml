@@ -1,3 +1,4 @@
 type = "text"
 title = "简历"
 source = "cv.md"
+json_source = "cv.json"
