@@ -116,7 +116,6 @@ export default function CommandPalette({ items, itemsByLocale, email }: CommandP
       window.removeEventListener('keydown', onKey);
       window.removeEventListener(OPEN_PALETTE_EVENT, onOpen);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   // focus input when opened

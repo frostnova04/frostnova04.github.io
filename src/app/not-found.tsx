@@ -27,7 +27,7 @@ export default function NotFound() {
               404
             </span>
             <p className="mt-4 text-neutral-500 text-xs sm:text-sm">
-              // 这个页面像被打劫的棋局一样消失了
+              {'// 这个页面像被打劫的棋局一样消失了'}
               <br />
               &mdash; this page has vanished from the board &mdash;
             </p>
