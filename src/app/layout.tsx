@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: config.site.title,
       images: [
         {
-          url: '/og-image.png',
+          url: '/og-image.png?v=2',
           width: 1200,
           height: 630,
           alt: `${config.author.name} — ${config.site.title}`,
@@ -65,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: config.site.title,
       description: config.site.description,
-      images: ['/og-image.png'],
+      images: ['/og-image.png?v=2'],
     },
   };
 }
