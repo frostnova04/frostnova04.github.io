@@ -22,13 +22,24 @@ export async function generateMetadata(): Promise<Metadata> {
   const runtimeI18n = getRuntimeI18nConfig(config.i18n);
   const openGraphLocale = runtimeI18n.defaultLocale === 'zh' ? 'zh_CN' : 'en_US';
 
+  const siteUrl = 'https://frostnova04.github.io';
+
   return {
+    metadataBase: new URL(siteUrl),
     title: {
       default: config.site.title,
       template: `%s | ${config.site.title}`,
     },
     description: config.site.description,
-    keywords: [config.author.name, 'PhD', 'Research', config.author.institution],
+    keywords: [
+      config.author.name,
+      '董天一',
+      'Juris Master',
+      'Tsinghua University',
+      'International Arbitration',
+      'Cross-border Disputes',
+      config.author.institution,
+    ],
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     publisher: config.author.name,
@@ -40,7 +51,21 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: openGraphLocale,
       title: config.site.title,
       description: config.site.description,
-      siteName: `${config.author.name}'s Academic Website`,
+      siteName: config.site.title,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: `${config.author.name} — ${config.site.title}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: config.site.title,
+      description: config.site.description,
+      images: ['/og-image.png'],
     },
   };
 }
@@ -141,15 +166,6 @@ export default function RootLayout({
     <html lang={runtimeI18n.defaultLocale} className={`${jetbrainsMono.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
-        <link rel="dns-prefetch" href="https://jialeliu.com" />
-        <link rel="preconnect" href="https://jialeliu.com" crossOrigin="" />
-        <link
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          href="https://jialeliu.com/fonts/georgiab.woff2"
-          crossOrigin=""
-        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
