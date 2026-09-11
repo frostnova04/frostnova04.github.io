@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
 import BirdMascot from '@/components/ui/BirdMascot';
 import CommandPalette from '@/components/ui/CommandPalette';
+import BootAnimation from '@/components/ui/BootAnimation';
 import { getConfig } from '@/lib/config';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 import type { SiteConfig } from '@/lib/config';
@@ -193,6 +194,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        <BootAnimation />
         <ThemeProvider>
           <LocaleProvider config={runtimeI18n}>
             <Navigation
