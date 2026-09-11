@@ -17,7 +17,7 @@ title = "关于我"
 [[sections]]
 id = "game"
 type = "game"
-title = "Flappy Bird"
+title = "棋局回放"
 
 [[sections]]
 id = "news"

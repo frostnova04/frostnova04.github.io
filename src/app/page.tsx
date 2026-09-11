@@ -149,7 +149,7 @@ function loadAmbientKifu(): AmbientKifu {
     if (!game || game.moves.length === 0) return { moves: [], size: 19 };
     const players = [game.meta.black, game.meta.white].filter(Boolean).join(' vs ');
     const year = game.meta.date?.slice(0, 4);
-    const caption = [players, year].filter(Boolean).join(' · ');
+    const caption = [players, year, game.meta.result].filter(Boolean).join(' · ');
     const moves: SgfMove[] = game.moves.filter((m) => !m.pass).slice(0, 170);
     return { moves, size: game.size, caption };
   } catch {

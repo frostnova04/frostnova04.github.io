@@ -4,9 +4,7 @@ import Profile from '@/components/home/Profile';
 import About from '@/components/home/About';
 import SelectedPublications from '@/components/home/SelectedPublications';
 import News, { NewsItem } from '@/components/home/News';
-import FlappyBird from '@/components/home/FlappyBird';
-import KifuAmbient from '@/components/home/KifuAmbient';
-import StatsStrip from '@/components/home/StatsStrip';
+import KifuReplay from '@/components/home/KifuReplay';
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
@@ -65,11 +63,8 @@ export default function HomePageClient({ dataByLocale, defaultLocale, ambient }:
   }
 
   return (
-    <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen overflow-hidden">
-      {ambient && ambient.moves.length > 0 && (
-        <KifuAmbient moves={ambient.moves} size={ambient.size} caption={ambient.caption} />
-      )}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-1">
           <Profile
             author={data.author}
@@ -111,9 +106,12 @@ export default function HomePageClient({ dataByLocale, defaultLocale, ambient }:
                     );
                   case 'game':
                     return (
-                      <FlappyBird
+                      <KifuReplay
                         key={section.id}
                         title={section.title}
+                        moves={ambient?.moves || []}
+                        size={ambient?.size || 19}
+                        caption={ambient?.caption}
                       />
                     );
                   default:
@@ -143,9 +141,6 @@ export default function HomePageClient({ dataByLocale, defaultLocale, ambient }:
             </section>
           ))}
         </div>
-      </div>
-      <div className="relative z-10">
-        <StatsStrip />
       </div>
     </div>
   );
