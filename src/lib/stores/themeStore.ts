@@ -27,7 +27,7 @@ export const useThemeStore = create<ThemeStore>()(
       },
     }),
     {
-      name: 'theme-storage-v2',
+      name: 'theme-storage-v3',
       storage: createJSONStorage(() => {
         if (typeof window !== 'undefined') {
           return localStorage;

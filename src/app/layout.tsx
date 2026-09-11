@@ -171,7 +171,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('theme-storage-v2');
+                const theme = localStorage.getItem('theme-storage-v3');
                 const parsed = theme ? JSON.parse(theme) : null;
                 const setting = parsed?.state?.theme || 'dark';
                 const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
