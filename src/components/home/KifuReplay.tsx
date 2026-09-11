@@ -21,6 +21,66 @@ const FADE = 260;       // stone pop-in
 const HOLD = 2600;      // pause after the final move
 const CYCLE_GAP = 400;  // blank beat before replay
 
+/* ---------- Go capture rules (so captured stones actually leave the board) ---------- */
+
+function hasLiberty(board: Uint8Array, size: number, x: number, y: number): boolean {
+  const color = board[y * size + x];
+  if (color === 0) return true;
+  const seen = new Set<number>([y * size + x]);
+  const stack = [y * size + x];
+  while (stack.length) {
+    const i = stack.pop() as number;
+    const ix = i % size;
+    const iy = (i / size) | 0;
+    for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+      const jx = ix + dx;
+      const jy = iy + dy;
+      if (jx < 0 || jy < 0 || jx >= size || jy >= size) continue;
+      const j = jy * size + jx;
+      if (board[j] === 0) return true;
+      if (board[j] === color && !seen.has(j)) {
+        seen.add(j);
+        stack.push(j);
+      }
+    }
+  }
+  return false;
+}
+
+function removeGroup(board: Uint8Array, size: number, x: number, y: number): void {
+  const color = board[y * size + x];
+  const stack = [y * size + x];
+  while (stack.length) {
+    const i = stack.pop() as number;
+    const ix = i % size;
+    const iy = (i / size) | 0;
+    board[i] = 0;
+    for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+      const jx = ix + dx;
+      const jy = iy + dy;
+      if (jx < 0 || jy < 0 || jx >= size || jy >= size) continue;
+      const j = jy * size + jx;
+      if (board[j] === color) stack.push(j);
+    }
+  }
+}
+
+function placeWithCaptures(board: Uint8Array, size: number, x: number, y: number, color: 1 | 2): void {
+  const idx = y * size + x;
+  if (board[idx] !== 0) return; // tolerate dirty SGF gracefully
+  board[idx] = color;
+  const opp = color === 1 ? 2 : 1;
+  for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+    const nx = x + dx;
+    const ny = y + dy;
+    if (nx < 0 || ny < 0 || nx >= size || ny >= size) continue;
+    if (board[ny * size + nx] !== opp) continue;
+    if (!hasLiberty(board, size, nx, ny)) removeGroup(board, size, nx, ny);
+  }
+  // suicide guard (invalid in real games; keeps the board sane if present)
+  if (!hasLiberty(board, size, x, y)) removeGroup(board, size, x, y);
+}
+
 /**
  * Full-visibility self-playing kifu section (took over the old game slot).
  * High-contrast board that adapts to light/dark theme; pause / replay
@@ -69,6 +129,19 @@ export default function KifuReplay({
     const cell = (LOGICAL - 2 * pad) / (N - 1);
     const r = cell * 0.47;
     const starPts = N === 19 ? [3, 9, 15] : [];
+
+    // precompute the board position after every move (captures applied)
+    const snap0 = new Uint8Array(N * N);
+    for (const [x, y] of setupBlack || []) snap0[y * N + x] = 1;
+    for (const [x, y] of setupWhite || []) snap0[y * N + x] = 2;
+    const snapAfter: Uint8Array[] = [];
+    let prev = snap0;
+    for (const m of moves) {
+      const board = Uint8Array.from(prev);
+      placeWithCaptures(board, N, m.x, m.y, m.color);
+      snapAfter.push(board);
+      prev = board;
+    }
 
     const palette = () =>
       document.documentElement.classList.contains('dark')
@@ -147,19 +220,22 @@ export default function KifuReplay({
         }
       }
 
-      // handicap setup stones — on the board from move zero
-      for (const [x, y] of setupBlack || []) drawStone(p, 1, x, y, 1, 1);
-      for (const [x, y] of setupWhite || []) drawStone(p, 2, x, y, 1, 1);
-
-      // timed moves (fully opaque once placed — this section is meant to be read)
+      // current position (captures applied); last stone animates in on top
       const placed = Math.min(moves.length, Math.floor(t / STEP) + 1);
-      for (let i = 0; i < placed; i++) {
-        const m = moves[i];
-        const age = t - i * STEP;
-        const a = Math.min(1, age / FADE);
-        const scale = 0.75 + 0.25 * (1 - Math.pow(1 - a, 2));
-        drawStone(p, m.color, m.x, m.y, a, scale);
+      const snap = placed === 0 ? snap0 : snapAfter[placed - 1];
+      const last = placed > 0 ? moves[placed - 1] : null;
+      const lastA = last ? Math.min(1, (t - (placed - 1) * STEP) / FADE) : 1;
+      const lastScale = 0.75 + 0.25 * (1 - Math.pow(1 - lastA, 2));
+
+      for (let gy = 0; gy < N; gy++) {
+        for (let gx = 0; gx < N; gx++) {
+          const c = snap[gy * N + gx];
+          if (c === 0) continue;
+          if (last && gx === last.x && gy === last.y) continue; // drawn below with fade
+          drawStone(p, c as 1 | 2, gx, gy, 1, 1);
+        }
       }
+      if (last) drawStone(p, last.color, last.x, last.y, lastA, lastScale);
 
       // last move marker
       if (placed > 0) {
