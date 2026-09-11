@@ -9,8 +9,6 @@ import type { SiteConfig } from '@/lib/config';
 
 /** Custom event other components (e.g. the navbar button) use to open the palette. */
 export const OPEN_PALETTE_EVENT = 'tianyi:open-palette';
-/** Custom event that triggers the bird easter egg (listened by BirdMascot). */
-export const BIRD_DETONATE_EVENT = 'tianyi:bird-detonate';
 
 interface CommandItem {
   id: string;
@@ -68,13 +66,6 @@ export default function CommandPalette({ items, itemsByLocale, email }: CommandP
             run: () => navigator.clipboard?.writeText(email),
           }]
         : []),
-      {
-        id: 'action-bird',
-        title: t('炸毛小鸟 🐦（彩蛋）', 'Detonate the bird 🐦 (easter egg)'),
-        hint: 'easter egg',
-        group: 'actions',
-        run: () => window.dispatchEvent(new Event(BIRD_DETONATE_EVENT)),
-      },
     ];
 
     return [...navCommands, ...actionCommands];
