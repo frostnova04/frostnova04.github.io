@@ -1,10 +1,12 @@
 import { getConfig } from '@/lib/config';
 import { getMarkdownContent, getBibtexContent, getTomlContent, getPageConfig } from '@/lib/content';
 import { parseBibTeX } from '@/lib/bibtexParser';
-import HomePageClient, { type HomePageLocaleData } from '@/components/home/HomePageClient';
+import HomePageClient, { type HomePageLocaleData, type AmbientKifu } from '@/components/home/HomePageClient';
 import { Publication } from '@/types/publication';
 import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
+import { listSgfGames, getSgfGame } from '@/lib/sgf';
+import type { SgfMove } from '@/lib/sgf-shared';
 
 interface SectionConfig {
   id: string;
@@ -137,6 +139,24 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
   };
 }
 
+/** Pick the ambient hero game (the one vs the world champion, else first). */
+function loadAmbientKifu(): AmbientKifu {
+  try {
+    const games = listSgfGames();
+    const target = games.find((g) => g.filename.includes('申真谞')) || games[0];
+    if (!target) return { moves: [], size: 19 };
+    const game = getSgfGame(target.id);
+    if (!game || game.moves.length === 0) return { moves: [], size: 19 };
+    const players = [game.meta.black, game.meta.white].filter(Boolean).join(' vs ');
+    const year = game.meta.date?.slice(0, 4);
+    const caption = [players, year].filter(Boolean).join(' · ');
+    const moves: SgfMove[] = game.moves.filter((m) => !m.pass).slice(0, 170);
+    return { moves, size: game.size, caption };
+  } catch {
+    return { moves: [], size: 19 };
+  }
+}
+
 export default function Home() {
   const baseConfig = getConfig();
   const runtimeI18n = getRuntimeI18nConfig(baseConfig.i18n);
@@ -152,5 +172,11 @@ export default function Home() {
     dataByLocale[runtimeI18n.defaultLocale] = loadPageDataForLocale(undefined);
   }
 
-  return <HomePageClient dataByLocale={dataByLocale} defaultLocale={runtimeI18n.defaultLocale} />;
+  return (
+    <HomePageClient
+      dataByLocale={dataByLocale}
+      defaultLocale={runtimeI18n.defaultLocale}
+      ambient={loadAmbientKifu()}
+    />
+  );
 }

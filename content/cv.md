@@ -2,6 +2,8 @@
 
 **Email:** dong-ty22@mails.tsinghua.edu.cn ｜ **Phone:** +86 173 1731 1392 ｜ **GitHub:** [frostnova04](https://github.com/frostnova04)
 
+**CV (PDF):** [English](/resume-en.pdf) ｜ [中文](/resume-zh.pdf)
+
 ---
 
 ## Education

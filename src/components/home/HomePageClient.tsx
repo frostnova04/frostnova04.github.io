@@ -5,6 +5,8 @@ import About from '@/components/home/About';
 import SelectedPublications from '@/components/home/SelectedPublications';
 import News, { NewsItem } from '@/components/home/News';
 import FlappyBird from '@/components/home/FlappyBird';
+import KifuAmbient from '@/components/home/KifuAmbient';
+import StatsStrip from '@/components/home/StatsStrip';
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
@@ -12,6 +14,13 @@ import type { SiteConfig } from '@/lib/config';
 import { Publication } from '@/types/publication';
 import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import type { SgfMove } from '@/lib/sgf-shared';
+
+export interface AmbientKifu {
+  moves: SgfMove[];
+  size: number;
+  caption?: string;
+}
 
 interface SectionConfig {
   id: string;
@@ -43,9 +52,10 @@ export interface HomePageLocaleData {
 interface HomePageClientProps {
   dataByLocale: Record<string, HomePageLocaleData>;
   defaultLocale: string;
+  ambient?: AmbientKifu;
 }
 
-export default function HomePageClient({ dataByLocale, defaultLocale }: HomePageClientProps) {
+export default function HomePageClient({ dataByLocale, defaultLocale, ambient }: HomePageClientProps) {
   const locale = useLocaleStore((state) => state.locale);
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const data = dataByLocale[locale] || fallback;
@@ -55,8 +65,11 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen overflow-hidden">
+      {ambient && ambient.moves.length > 0 && (
+        <KifuAmbient moves={ambient.moves} size={ambient.size} caption={ambient.caption} />
+      )}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-1">
           <Profile
             author={data.author}
@@ -130,6 +143,9 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
             </section>
           ))}
         </div>
+      </div>
+      <div className="relative z-10">
+        <StatsStrip />
       </div>
     </div>
   );
