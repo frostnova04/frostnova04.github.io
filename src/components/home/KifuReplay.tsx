@@ -10,6 +10,9 @@ interface KifuReplayProps {
   moves: SgfMove[];
   size?: number;
   caption?: string;
+  setupBlack?: [number, number][];
+  setupWhite?: [number, number][];
+  handicap?: string;
 }
 
 const LOGICAL = 440;
@@ -23,7 +26,15 @@ const CYCLE_GAP = 400;  // blank beat before replay
  * High-contrast board that adapts to light/dark theme; pause / replay
  * controls; auto-restarts from the top after the game ends.
  */
-export default function KifuReplay({ title, moves, size = 19, caption }: KifuReplayProps) {
+export default function KifuReplay({
+  title,
+  moves,
+  size = 19,
+  caption,
+  setupBlack,
+  setupWhite,
+  handicap,
+}: KifuReplayProps) {
   const locale = useLocaleStore((s) => s.locale);
   const t = (zh: string, en: string) => (locale === 'zh' ? zh : en);
 
@@ -84,6 +95,31 @@ export default function KifuReplay({ title, moves, size = 19, caption }: KifuRep
             shadow: 'rgba(15,23,42,0.25)',
           };
 
+    const drawStone = (
+      p: ReturnType<typeof palette>,
+      color: 1 | 2,
+      x: number,
+      y: number,
+      alpha: number,
+      scale: number
+    ) => {
+      const px = pad + x * cell;
+      const py = pad + y * cell;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = p.shadow;
+      ctx.shadowBlur = 4;
+      ctx.beginPath();
+      ctx.arc(px, py, r * scale, 0, Math.PI * 2);
+      ctx.fillStyle = color === 1 ? p.blackFill : p.whiteFill;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = color === 1 ? p.blackRim : p.whiteRim;
+      ctx.stroke();
+      ctx.restore();
+    };
+
     const draw = (t: number) => {
       const p = palette();
       ctx.clearRect(0, 0, LOGICAL, LOGICAL);
@@ -111,29 +147,18 @@ export default function KifuReplay({ title, moves, size = 19, caption }: KifuRep
         }
       }
 
-      // stones (all fully opaque once placed — this section is meant to be read)
+      // handicap setup stones — on the board from move zero
+      for (const [x, y] of setupBlack || []) drawStone(p, 1, x, y, 1, 1);
+      for (const [x, y] of setupWhite || []) drawStone(p, 2, x, y, 1, 1);
+
+      // timed moves (fully opaque once placed — this section is meant to be read)
       const placed = Math.min(moves.length, Math.floor(t / STEP) + 1);
       for (let i = 0; i < placed; i++) {
         const m = moves[i];
         const age = t - i * STEP;
         const a = Math.min(1, age / FADE);
         const scale = 0.75 + 0.25 * (1 - Math.pow(1 - a, 2));
-        const px = pad + m.x * cell;
-        const py = pad + m.y * cell;
-
-        ctx.save();
-        ctx.globalAlpha = a;
-        ctx.shadowColor = p.shadow;
-        ctx.shadowBlur = 4;
-        ctx.beginPath();
-        ctx.arc(px, py, r * scale, 0, Math.PI * 2);
-        ctx.fillStyle = m.color === 1 ? p.blackFill : p.whiteFill;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.lineWidth = 1.4;
-        ctx.strokeStyle = m.color === 1 ? p.blackRim : p.whiteRim;
-        ctx.stroke();
-        ctx.restore();
+        drawStone(p, m.color, m.x, m.y, a, scale);
       }
 
       // last move marker
@@ -191,7 +216,7 @@ export default function KifuReplay({ title, moves, size = 19, caption }: KifuRep
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [moves, size, total]);
+  }, [moves, size, total, setupBlack, setupWhite]);
 
   if (moves.length === 0) return null;
 
@@ -223,6 +248,12 @@ export default function KifuReplay({ title, moves, size = 19, caption }: KifuRep
       {caption && (
         <p className="font-mono text-xs text-accent mb-4">
           <span className="text-neutral-500">$</span> watch {caption}
+          {handicap && handicap !== '0' && (
+            <span className="text-neutral-500">
+              {' · '}
+              {t(`让${handicap}子`, `${handicap}-stone handicap`)}
+            </span>
+          )}
         </p>
       )}
 

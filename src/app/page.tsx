@@ -151,7 +151,15 @@ function loadAmbientKifu(): AmbientKifu {
     const year = game.meta.date?.slice(0, 4);
     const caption = [players, year, game.meta.result].filter(Boolean).join(' · ');
     const moves: SgfMove[] = game.moves.filter((m) => !m.pass).slice(0, 170);
-    return { moves, size: game.size, caption };
+    return {
+      moves,
+      size: game.size,
+      caption,
+      setupBlack: game.setupBlack,
+      setupWhite: game.setupWhite,
+      // HA is authoritative; fall back to deriving it from the setup stones
+      handicap: game.meta.handicap || (game.setupBlack.length >= 2 ? String(game.setupBlack.length) : undefined),
+    };
   } catch {
     return { moves: [], size: 19 };
   }

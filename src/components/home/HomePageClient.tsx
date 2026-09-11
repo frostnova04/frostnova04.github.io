@@ -18,6 +18,9 @@ export interface AmbientKifu {
   moves: SgfMove[];
   size: number;
   caption?: string;
+  setupBlack?: [number, number][];
+  setupWhite?: [number, number][];
+  handicap?: string;
 }
 
 interface SectionConfig {
@@ -112,6 +115,9 @@ export default function HomePageClient({ dataByLocale, defaultLocale, ambient }:
                         moves={ambient?.moves || []}
                         size={ambient?.size || 19}
                         caption={ambient?.caption}
+                        setupBlack={ambient?.setupBlack}
+                        setupWhite={ambient?.setupWhite}
+                        handicap={ambient?.handicap}
                       />
                     );
                   default:
