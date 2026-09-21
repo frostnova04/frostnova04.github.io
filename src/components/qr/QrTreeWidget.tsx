@@ -113,10 +113,7 @@ export default function QrTreeWidget() {
                 <QrTreeScene key={replayKey} />
               </div>
 
-              <div className="mt-3 flex items-center justify-between gap-3">
-                <p className="font-mono text-xs leading-relaxed text-neutral-500">
-                  {t('树叶落定后即为微信二维码，扫码添加好友', 'Leaves settle into a scannable WeChat QR')}
-                </p>
+              <div className="mt-3 flex items-center justify-end">
                 <button
                   type="button"
                   onClick={() => setReplayKey((k) => k + 1)}
