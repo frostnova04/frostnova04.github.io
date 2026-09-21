@@ -51,5 +51,7 @@ next-env.d.ts
 ou8herm30j1prxas0m37vd5ebwzi953.png
 821cd855dd93e0dd0dcfd44fd0ec0e24.jpg
 微信图片_20260731091046_2085_185.jpg
+# source WeChat QR image (the published form is the generated tree, see src/lib/wechat-qr.ts)
+微信图片_20260920122237_111_2.jpg
 # local mobile-check screenshot output (regenerate via scripts/mobile_check.py)
 scripts/mobile-check/

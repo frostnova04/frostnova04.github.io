@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
 import CommandPalette from '@/components/ui/CommandPalette';
 import BootAnimation from '@/components/ui/BootAnimation';
+import QrTreeWidget from '@/components/qr/QrTreeWidget';
 import { getConfig } from '@/lib/config';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 import type { SiteConfig } from '@/lib/config';
@@ -217,6 +218,7 @@ export default function RootLayout({
               itemsByLocale={navigationByLocale}
               email={config.social.email}
             />
+            <QrTreeWidget />
           </LocaleProvider>
         </ThemeProvider>
       </body>
