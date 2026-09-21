@@ -298,8 +298,6 @@ export default function QrTreeScene() {
     const cA = dark ? leafDarkA : leafLightA;
     const cB = dark ? leafDarkB : leafLightB;
 
-    let finalRendered = false;
-
     function drawFrame(t: number): void {
       const fColor = clamp01((t - T_HOLD_END) / 950);       // leaf ink + bg blend
       const fCam = easeInOut(clamp01((t - T_HOLD_END) / 1200)); // camera move
