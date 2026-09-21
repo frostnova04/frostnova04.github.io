@@ -23,7 +23,6 @@ import {
 import { WECHAT_QR_ROWS, WECHAT_QR_SIZE } from '@/lib/wechat-qr';
 
 /* timeline (ms): grow -> hold -> flatten into a scannable QR -> stay */
-const T_GROW_END = 2600;
 const T_HOLD_END = 3800;
 const T_FLAT_END = 5450;
 const T_FINAL = 1e9; // far-future timestamp: every clamp saturates at the crisp end state
