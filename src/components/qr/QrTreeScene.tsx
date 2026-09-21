@@ -407,7 +407,7 @@ export default function QrTreeScene() {
         if (mat && 'dispose' in mat) mat.dispose();
       });
       renderer.dispose();
-      if (el.parentElement === host) host.removeChild(el);
+      if (el.parentElement) el.parentElement.removeChild(el);
     }
 
     return () => cleanup();
